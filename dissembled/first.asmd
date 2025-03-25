@@ -1,0 +1,118 @@
+
+first:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000004610 <_start>:
+    4610:	d503249f 	bti	j
+    4614:	d280001d 	mov	x29, #0x0                   	// #0
+    4618:	d280001e 	mov	x30, #0x0                   	// #0
+    461c:	910003e0 	mov	x0, sp
+    4620:	14000001 	b	4624 <_start_main>
+
+0000000000004624 <_start_main>:
+    4624:	d503233f 	paciasp
+    4628:	d10103ff 	sub	sp, sp, #0x40
+    462c:	a9037bfd 	stp	x29, x30, [sp, #48]
+    4630:	9100c3fd 	add	x29, sp, #0x30
+    4634:	90000028 	adrp	x8, 8000 <__register_atfork@plt+0x3890>
+    4638:	90000029 	adrp	x9, 8000 <__register_atfork@plt+0x3890>
+    463c:	6f00e400 	movi	v0.2d, #0x0
+    4640:	f9447908 	ldr	x8, [x8, #2288]
+    4644:	f9447d29 	ldr	x9, [x9, #2296]
+    4648:	cb080128 	sub	x8, x9, x8
+    464c:	f100051f 	cmp	x8, #0x1
+    4650:	ad0083e0 	stp	q0, q0, [sp, #16]
+    4654:	3d8003e0 	str	q0, [sp]
+    4658:	5400008b 	b.lt	4668 <_start_main+0x44>  // b.tstop
+    465c:	d503201f 	nop
+    4660:	100416c8 	adr	x8, c938 <fini_array_with_sentinels>
+    4664:	f9000be8 	str	x8, [sp, #16]
+    4668:	90000022 	adrp	x2, 8000 <__register_atfork@plt+0x3890>
+    466c:	910003e3 	mov	x3, sp
+    4670:	aa1f03e1 	mov	x1, xzr
+    4674:	f9448042 	ldr	x2, [x2, #2304]
+    4678:	94000036 	bl	4750 <__libc_init@plt>
+
+000000000000467c <__atexit_handler_wrapper>:
+    467c:	d503245f 	bti	c
+    4680:	b4000060 	cbz	x0, 468c <__atexit_handler_wrapper+0x10>
+    4684:	aa0003f0 	mov	x16, x0
+    4688:	d61f0200 	br	x16
+    468c:	d65f03c0 	ret
+
+0000000000004690 <atexit>:
+    4690:	d503245f 	bti	c
+    4694:	aa0003e1 	mov	x1, x0
+    4698:	d503201f 	nop
+    469c:	10ffff00 	adr	x0, 467c <__atexit_handler_wrapper>
+    46a0:	d503201f 	nop
+    46a4:	10041562 	adr	x2, c950 <__dso_handle>
+    46a8:	1400002e 	b	4760 <__cxa_atexit@plt>
+
+00000000000046ac <pthread_atfork>:
+    46ac:	d503245f 	bti	c
+    46b0:	d503201f 	nop
+    46b4:	100414e3 	adr	x3, c950 <__dso_handle>
+    46b8:	1400002e 	b	4770 <__register_atfork@plt>
+
+00000000000046bc <call_fini_array>:
+    46bc:	d503233f 	paciasp
+    46c0:	a9be7bfd 	stp	x29, x30, [sp, #-32]!
+    46c4:	a9014ff4 	stp	x20, x19, [sp, #16]
+    46c8:	910003fd 	mov	x29, sp
+    46cc:	90000033 	adrp	x19, 8000 <__register_atfork@plt+0x3890>
+    46d0:	90000028 	adrp	x8, 8000 <__register_atfork@plt+0x3890>
+    46d4:	f9447a73 	ldr	x19, [x19, #2288]
+    46d8:	f9447d08 	ldr	x8, [x8, #2296]
+    46dc:	eb130108 	subs	x8, x8, x19
+    46e0:	54000100 	b.eq	4700 <call_fini_array+0x44>  // b.none
+    46e4:	9343fd08 	asr	x8, x8, #3
+    46e8:	8b080e69 	add	x9, x19, x8, lsl #3
+    46ec:	d1000514 	sub	x20, x8, #0x1
+    46f0:	f85f8129 	ldur	x9, [x9, #-8]
+    46f4:	d63f0120 	blr	x9
+    46f8:	aa1403e8 	mov	x8, x20
+    46fc:	b5ffff74 	cbnz	x20, 46e8 <call_fini_array+0x2c>
+    4700:	a9414ff4 	ldp	x20, x19, [sp, #16]
+    4704:	a8c27bfd 	ldp	x29, x30, [sp], #32
+    4708:	d50323bf 	autiasp
+    470c:	d65f03c0 	ret
+
+0000000000004710 <main>:
+    4710:	d10043ff 	sub	sp, sp, #0x10
+    4714:	2a1f03e0 	mov	w0, wzr
+    4718:	b9000fff 	str	wzr, [sp, #12]
+    471c:	910043ff 	add	sp, sp, #0x10
+    4720:	d65f03c0 	ret
+
+Disassembly of section .plt:
+
+0000000000004730 <__libc_init@plt-0x20>:
+    4730:	a9bf7bf0 	stp	x16, x30, [sp, #-16]!
+    4734:	90000030 	adrp	x16, 8000 <__register_atfork@plt+0x3890>
+    4738:	f9448e11 	ldr	x17, [x16, #2328]
+    473c:	91246210 	add	x16, x16, #0x918
+    4740:	d61f0220 	br	x17
+    4744:	d503201f 	nop
+    4748:	d503201f 	nop
+    474c:	d503201f 	nop
+
+0000000000004750 <__libc_init@plt>:
+    4750:	90000030 	adrp	x16, 8000 <__register_atfork@plt+0x3890>
+    4754:	f9449211 	ldr	x17, [x16, #2336]
+    4758:	91248210 	add	x16, x16, #0x920
+    475c:	d61f0220 	br	x17
+
+0000000000004760 <__cxa_atexit@plt>:
+    4760:	90000030 	adrp	x16, 8000 <__register_atfork@plt+0x3890>
+    4764:	f9449611 	ldr	x17, [x16, #2344]
+    4768:	9124a210 	add	x16, x16, #0x928
+    476c:	d61f0220 	br	x17
+
+0000000000004770 <__register_atfork@plt>:
+    4770:	90000030 	adrp	x16, 8000 <__register_atfork@plt+0x3890>
+    4774:	f9449a11 	ldr	x17, [x16, #2352]
+    4778:	9124c210 	add	x16, x16, #0x930
+    477c:	d61f0220 	br	x17
