@@ -1,8 +1,8 @@
 # MT6761 _asm
 
 > aim:
-> experimention with ARMv8(A32,A64) asm with gnu assemnler on mt6761 chipset.
->(just toting around;)
+>> experimention with ARMv8(A32,A64) asm with gnu assembler on mt6761 chipset.
+>> ;)
 
 i will just try to figure out the working of asm
 by relying on the  dissembled code by objdump
