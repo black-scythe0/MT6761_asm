@@ -82,8 +82,8 @@ Disassembly of section .text:
 
 0000000000004710 <main>:
     4710:	d10043ff 	sub	sp, sp, #0x10
-    4714:	2a1f03e0 	mov	w0, wzr
-    4718:	b9000fff 	str	wzr, [sp, #12]
+    4714:	b9000fff 	str	wzr, [sp, #12]
+    4718:	52800020 	mov	w0, #0x1                   	// #1
     471c:	910043ff 	add	sp, sp, #0x10
     4720:	d65f03c0 	ret
 
